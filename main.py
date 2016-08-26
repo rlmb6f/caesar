@@ -111,8 +111,8 @@ class CaesarCode(webapp2.RequestHandler):
 
     def post(self):
         rotCode = int(self.request.get("rot"))
-        phraseCode = self.request.get("phrase")
-        newCode = cgi.escape(encrypt(phraseCode, rotCode))
+        phraseCode = cgi.escape(self.request.get("phrase"))
+        newCode = encrypt(phraseCode, rotCode)
         self.write_form(newCode)
 
         #response = page_header + "<p>" + cgi.escape(newCode, quote=True) + "</p>" + page_footer
